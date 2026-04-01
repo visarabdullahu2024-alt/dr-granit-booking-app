@@ -29,8 +29,9 @@ body {
   color: var(--text);
   font-family: "Manrope", sans-serif;
   background:
-    radial-gradient(circle at top right, rgba(15, 95, 136, 0.08), transparent 22%),
-    linear-gradient(180deg, #fbf9f4 0%, #f4efe7 100%);
+    radial-gradient(circle at top right, rgba(15, 95, 136, 0.12), transparent 22%),
+    radial-gradient(circle at 20% 30%, rgba(183, 128, 74, 0.14), transparent 30%),
+    linear-gradient(180deg, #fbf9f4 0%, #f3eee5 100%);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -266,12 +267,19 @@ h3 {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow);
   background: #fff;
+  position: relative;
 }
 
 .hero-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1);
+  transition: transform 1.2s ease;
+}
+
+.hero-photo:hover img {
+  transform: scale(1.03);
 }
 
 .contact-strip {
@@ -317,6 +325,36 @@ h3 {
   padding: 28px;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-copy.reveal {
+  transition-delay: 0.05s;
+}
+
+.hero-photo-wrap.reveal {
+  transition-delay: 0.12s;
+}
+
+.hero-highlights.reveal,
+.contact-strip.reveal {
+  transition-delay: 0.2s;
+}
+
+.engagement-card.reveal {
+  transition-delay: 0.12s;
+}
+
 .bio-intro {
   margin-bottom: 18px;
 }
@@ -337,10 +375,26 @@ h3 {
   cursor: pointer;
   font-weight: 800;
   color: var(--accent);
+  position: relative;
 }
 
 .bio-details summary::-webkit-details-marker {
   display: none;
+}
+
+.bio-details summary::after {
+  content: "+";
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: var(--warm);
+  transition: transform 0.3s ease;
+}
+
+.bio-details[open] summary::after {
+  transform: translateY(-50%) rotate(45deg);
 }
 
 .bio-details[open] summary {
@@ -511,10 +565,24 @@ h3 {
   .bio-details summary {
     padding: 20px;
   }
+
+  .bio-details summary::after {
+    right: 18px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-photo img {
+    transition: none;
   }
 }
