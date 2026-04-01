@@ -177,8 +177,7 @@ h3 {
 .prose p,
 .engagement-card p,
 .contact-panel p,
-.contact-panel a,
-.schedule-card li {
+.contact-panel a {
   color: var(--muted);
   line-height: 1.8;
 }
@@ -221,9 +220,9 @@ h3 {
 
 .hero-highlights,
 .engagement-grid,
-.schedule-grid,
 .contact-grid,
-.contact-strip {
+.contact-strip,
+.work-grid {
   display: grid;
   gap: 18px;
 }
@@ -236,9 +235,9 @@ h3 {
 .highlight-card,
 .content-card,
 .engagement-card,
-.schedule-card,
 .contact-panel,
-.contact-card {
+.contact-card,
+.bio-details {
   background: var(--surface);
   border: 1px solid rgba(226, 220, 210, 0.85);
   border-radius: var(--radius-lg);
@@ -247,7 +246,6 @@ h3 {
 
 .highlight-card,
 .engagement-card,
-.schedule-card,
 .contact-panel {
   padding: 22px;
 }
@@ -319,6 +317,42 @@ h3 {
   padding: 28px;
 }
 
+.bio-intro {
+  margin-bottom: 18px;
+}
+
+.bio-intro p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.bio-details {
+  overflow: hidden;
+}
+
+.bio-details summary {
+  list-style: none;
+  padding: 22px 28px;
+  cursor: pointer;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.bio-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.bio-details[open] summary {
+  border-bottom: 1px solid rgba(226, 220, 210, 0.85);
+}
+
+.bio-details .content-card {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 .prose p {
   margin: 0 0 18px;
 }
@@ -328,6 +362,10 @@ h3 {
 }
 
 .engagement-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.work-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
@@ -352,23 +390,9 @@ h3 {
 }
 
 .engagement-card h3,
-.schedule-card h3,
 .contact-panel h3 {
   margin: 0;
   font-size: 1.45rem;
-}
-
-.schedule-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.schedule-card ul {
-  margin: 14px 0 0;
-  padding-left: 18px;
-}
-
-.schedule-card li + li {
-  margin-top: 8px;
 }
 
 .contact-grid {
@@ -380,9 +404,30 @@ h3 {
   gap: 10px;
 }
 
+.compact-contact-grid {
+  grid-template-columns: minmax(0, 420px);
+}
+
 .contact-panel a {
   color: var(--accent);
   font-weight: 700;
+}
+
+.work-meta {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.work-meta p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.work-meta strong {
+  color: var(--text);
+  margin-right: 6px;
 }
 
 .link-inline {
@@ -392,9 +437,9 @@ h3 {
 @media (max-width: 1024px) {
   .hero-grid,
   .engagement-grid,
-  .schedule-grid,
   .contact-grid,
-  .hero-highlights {
+  .hero-highlights,
+  .work-grid {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -439,10 +484,10 @@ h3 {
 
   .hero-grid,
   .engagement-grid,
-  .schedule-grid,
   .contact-grid,
   .hero-highlights,
-  .contact-strip {
+  .contact-strip,
+  .work-grid {
     grid-template-columns: 1fr;
   }
 
@@ -456,12 +501,15 @@ h3 {
 
   .content-card,
   .engagement-card,
-  .schedule-card,
   .contact-panel,
   .highlight-card,
   .contact-card {
     padding: 20px;
     border-radius: 20px;
+  }
+
+  .bio-details summary {
+    padding: 20px;
   }
 }
 
